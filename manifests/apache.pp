@@ -9,7 +9,7 @@ class profile::apache(
   }
   
   create_resources(::apache::vhost, $apache_vhost_servers)
-  #::apache::vhost { 'tthomsen2.mylabserver.com':
+  #::apache::vhost { 'agent1.tickbox':
   #  port    => $port,
   #  docroot => $docroot,
   #}
