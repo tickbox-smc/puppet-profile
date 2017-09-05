@@ -7,13 +7,18 @@ class profile::python {
     gunicorn   => 'absent',
   }
 
-  #::python::requirements { '/vagrant/requirements.txt': }
+  if ( $need_to_install == undef ) {
+    
+    exec { 'install python packages':
+      command   => 'pip3 install flask flask_restful; touch /root/installed.txt',
+      path      => [ '/usr/bin/' ],
+      before    => Exec['create custom facter'],
+    }
 
-  ::python::pyenv { '/var/www/project1':
-    ensure => present,
-    version => 'python34',
-    venv_dir => '/tmp/venvs',
-    owner => 'root',
-    group => 'root',
-  }
+    exec { 'create custom facter':
+      command  => "mkdir -p /etc/facter/facts.d; echo 'need_to_install=false' > /etc/facter/facts.d/check_pip_install.txt",
+      provider => shell,
+    }
+
+  } 
 }
