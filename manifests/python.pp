@@ -1,6 +1,6 @@
 class profile::python {
   class { '::python':
-    version    => 'system',
+    version    => 'python34',
     pip        => 'present',
     dev        => 'absent',
     virtualenv => 'absent',
