@@ -3,7 +3,7 @@ class profile::python {
     version    => 'python34',
     pip        => 'present',
     dev        => 'present',
-    virtualenv => 'present',
+    virtualenv => 'absent',
     gunicorn   => 'absent',
   }
 
