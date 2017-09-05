@@ -3,16 +3,17 @@ class profile::python {
     version    => 'python34',
     pip        => 'present',
     dev        => 'present',
-    virtualenv => 'absent',
+    virtualenv => 'present',
     gunicorn   => 'absent',
   }
 
   #::python::requirements { '/vagrant/requirements.txt': }
 
-  ::python::pip { 'Flask':
-    pkgname => 'Flask',
-    ensure  => '0.10.1',
-    timeout => 1800,
+  ::python::pyenv { '/var/www/project1':
+    ensure => present,
+    version => 'python34',
+    venv_dir => '/tmp/venvs',
+    owner => 'root',
+    group => 'root',
   }
-
 }
