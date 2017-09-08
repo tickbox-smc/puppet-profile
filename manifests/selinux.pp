@@ -1,3 +1,5 @@
 class profile::selinux {
-  include ::selinux
+  class {
+    mode => 'enforcing'
+  }
 }
