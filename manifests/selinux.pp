@@ -1,5 +1,5 @@
 class profile::selinux {
-  class {
-    mode => 'enforcing'
+  class { selinux:
+    mode => 'enforcing',
   }
 }
